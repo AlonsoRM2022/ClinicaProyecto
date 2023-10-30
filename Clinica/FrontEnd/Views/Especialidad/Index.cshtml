@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FrontEnd.Models.EspecialidadViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEspecialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPrecio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusEspecialidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEspecialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPrecio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusEspecialidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IdEspecialidad }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdEspecialidad })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

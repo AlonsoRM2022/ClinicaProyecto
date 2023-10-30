@@ -8,6 +8,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IPrecioHelper, PrecioHelper>();
+builder.Services.AddScoped<IClinicaHelper, ClinicaHelper>();
+builder.Services.AddScoped<IDoctorHelper, DoctorHelper>();
+builder.Services.AddScoped<IHorarioHelper, HorarioHelper>();
+builder.Services.AddScoped<IEspecialidadHelper, EspecialidadHelper>();
+builder.Services.AddScoped<ICitaHelper, CitaHelper>();
 
 var app = builder.Build();
 

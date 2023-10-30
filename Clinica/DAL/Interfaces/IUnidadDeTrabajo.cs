@@ -9,7 +9,12 @@ namespace DAL.Interfaces
     public interface IUnidadDeTrabajo : IDisposable
     {
 
-        //IPrecioDAL _precioDAL { get; }
+        IPrecioDAL _precioDAL { get; }
+        IClinicaDAL _clinicaDAL { get; }
+        IDoctorDAL _doctorDAL { get; }
+        IHorarioDAL _horarioDAL { get; }
+        IEspecialidadDAL _especialidadDAL { get; }
+        ICitaDAL _citaDAL { get; }
         bool Complete();
     }
 }
