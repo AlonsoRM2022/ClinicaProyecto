@@ -16,16 +16,16 @@ namespace Entities.Entities
         {
         }
 
-        public virtual DbSet<Cita> Citas { get; set; } = null!;
+        public virtual DbSet<Cita> Cita { get; set; } = null!;
         public virtual DbSet<Clinica> Clinicas { get; set; } = null!;
         public virtual DbSet<Diagnostico> Diagnosticos { get; set; } = null!;
-        public virtual DbSet<Doctore> Doctores { get; set; } = null!;
-        public virtual DbSet<Especialidade> Especialidades { get; set; } = null!;
+        public virtual DbSet<Doctor> Doctors { get; set; } = null!;
+        public virtual DbSet<Especialidad> Especialidads { get; set; } = null!;
         public virtual DbSet<Factura> Facturas { get; set; } = null!;
         public virtual DbSet<Horario> Horarios { get; set; } = null!;
         public virtual DbSet<Precio> Precios { get; set; } = null!;
         public virtual DbSet<Reserva> Reservas { get; set; } = null!;
-        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<Role> Rols { get; set; } = null!;
         public virtual DbSet<StatusReserva> StatusReservas { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
@@ -34,7 +34,7 @@ namespace Entities.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-DJD7T3K;Database=Clinica;Integrated Security=True;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost;Database=Clinica;Persist Security Info=False;User ID=sa;Password=Admin1234+*;TrustServerCertificate=false;");
             }
         }
 
@@ -43,33 +43,35 @@ namespace Entities.Entities
             modelBuilder.Entity<Cita>(entity =>
             {
                 entity.HasKey(e => e.IdCita)
-                    .HasName("PK__Citas__394B0202FA08D694");
+                    .HasName("PK__Cita__394B020239CAEC53");
 
                 entity.HasOne(d => d.IdClinicaNavigation)
                     .WithMany(p => p.Cita)
                     .HasForeignKey(d => d.IdClinica)
-                    .HasConstraintName("FK__Citas__IdClinica__36B12243");
+                    .HasConstraintName("FK__Cita__IdClinica__49C3F6B7");
 
                 entity.HasOne(d => d.IdDoctorNavigation)
                     .WithMany(p => p.Cita)
                     .HasForeignKey(d => d.IdDoctor)
-                    .HasConstraintName("FK__Citas__IdDoctor__34C8D9D1");
+                    .HasConstraintName("FK__Cita__IdDoctor__47DBAE45");
 
                 entity.HasOne(d => d.IdEspecialidadNavigation)
                     .WithMany(p => p.Cita)
                     .HasForeignKey(d => d.IdEspecialidad)
-                    .HasConstraintName("FK__Citas__IdEspecia__35BCFE0A");
+                    .HasConstraintName("FK__Cita__IdEspecial__48CFD27E");
 
                 entity.HasOne(d => d.IdHorarioNavigation)
                     .WithMany(p => p.Cita)
                     .HasForeignKey(d => d.IdHorario)
-                    .HasConstraintName("FK__Citas__IdHorario__37A5467C");
+                    .HasConstraintName("FK__Cita__IdHorario__4AB81AF0");
             });
 
             modelBuilder.Entity<Clinica>(entity =>
             {
                 entity.HasKey(e => e.IdClinica)
-                    .HasName("PK__Clinicas__52A90951714C55C3");
+                    .HasName("PK__Clinica__52A90951867BBDD8");
+
+                entity.ToTable("Clinica");
 
                 entity.Property(e => e.Correo)
                     .HasMaxLength(50)
@@ -91,20 +93,24 @@ namespace Entities.Entities
             modelBuilder.Entity<Diagnostico>(entity =>
             {
                 entity.HasKey(e => e.IdDiagnostico)
-                    .HasName("PK__Diagnost__BD16DB69DA1B42BB");
+                    .HasName("PK__Diagnost__BD16DB69AFA90FA6");
+
+                entity.ToTable("Diagnostico");
 
                 entity.Property(e => e.Descripcion).IsUnicode(false);
 
                 entity.HasOne(d => d.IdReservaNavigation)
                     .WithMany(p => p.Diagnosticos)
                     .HasForeignKey(d => d.IdReserva)
-                    .HasConstraintName("FK__Diagnosti__IdRes__45F365D3");
+                    .HasConstraintName("FK__Diagnosti__IdRes__59063A47");
             });
 
-            modelBuilder.Entity<Doctore>(entity =>
+            modelBuilder.Entity<Doctor>(entity =>
             {
                 entity.HasKey(e => e.IdDoctor)
-                    .HasName("PK__Doctores__F838DB3EA2FB3455");
+                    .HasName("PK__Doctor__F838DB3ED520D352");
+
+                entity.ToTable("Doctor");
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(50)
@@ -115,25 +121,27 @@ namespace Entities.Entities
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Especialidade>(entity =>
+            modelBuilder.Entity<Especialidad>(entity =>
             {
                 entity.HasKey(e => e.IdEspecialidad)
-                    .HasName("PK__Especial__693FA0AF21B14629");
+                    .HasName("PK__Especial__693FA0AF4E7B6A5F");
+
+                entity.ToTable("Especialidad");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.IdPrecioNavigation)
-                    .WithMany(p => p.Especialidades)
+                    .WithMany(p => p.Especialidads)
                     .HasForeignKey(d => d.IdPrecio)
-                    .HasConstraintName("FK__Especiali__IdPre__2C3393D0");
+                    .HasConstraintName("FK__Especiali__IdPre__3F466844");
             });
 
             modelBuilder.Entity<Factura>(entity =>
             {
                 entity.HasKey(e => e.IdFactura)
-                    .HasName("PK__Facturas__50E7BAF19DBFEE75");
+                    .HasName("PK__Facturas__50E7BAF174427AED");
 
                 entity.Property(e => e.FechaRegistro)
                     .HasColumnType("datetime")
@@ -142,13 +150,15 @@ namespace Entities.Entities
                 entity.HasOne(d => d.IdReservaNavigation)
                     .WithMany(p => p.Facturas)
                     .HasForeignKey(d => d.IdReserva)
-                    .HasConstraintName("FK__Facturas__IdRese__4222D4EF");
+                    .HasConstraintName("FK__Facturas__IdRese__5535A963");
             });
 
             modelBuilder.Entity<Horario>(entity =>
             {
                 entity.HasKey(e => e.IdHorario)
-                    .HasName("PK__Horarios__1539229BB0FD0E3A");
+                    .HasName("PK__Horario__1539229BDB4BBAA8");
+
+                entity.ToTable("Horario");
 
                 entity.Property(e => e.Dia)
                     .HasMaxLength(25)
@@ -162,13 +172,17 @@ namespace Entities.Entities
             modelBuilder.Entity<Precio>(entity =>
             {
                 entity.HasKey(e => e.IdPrecio)
-                    .HasName("PK__Precios__2450584B02AAD287");
+                    .HasName("PK__Precio__2450584BF82D9FD8");
+
+                entity.ToTable("Precio");
             });
 
             modelBuilder.Entity<Reserva>(entity =>
             {
                 entity.HasKey(e => e.IdReserva)
-                    .HasName("PK__Reservas__0E49C69D55029B9B");
+                    .HasName("PK__Reserva__0E49C69DB47220C3");
+
+                entity.ToTable("Reserva");
 
                 entity.Property(e => e.FechaRegistro)
                     .HasColumnType("datetime")
@@ -177,23 +191,25 @@ namespace Entities.Entities
                 entity.HasOne(d => d.IdCitaNavigation)
                     .WithMany(p => p.Reservas)
                     .HasForeignKey(d => d.IdCita)
-                    .HasConstraintName("FK__Reservas__IdCita__3C69FB99");
+                    .HasConstraintName("FK__Reserva__IdCita__4F7CD00D");
 
                 entity.HasOne(d => d.IdStatusReservaNavigation)
                     .WithMany(p => p.Reservas)
                     .HasForeignKey(d => d.IdStatusReserva)
-                    .HasConstraintName("FK__Reservas__IdStat__3E52440B");
+                    .HasConstraintName("FK__Reserva__IdStatu__5165187F");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Reservas)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__Reservas__IdUsua__3D5E1FD2");
+                    .HasConstraintName("FK__Reserva__IdUsuar__5070F446");
             });
 
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasKey(e => e.IdRol)
-                    .HasName("PK__Roles__2A49584CDEFE75B5");
+                    .HasName("PK__Rol__2A49584C830E78C0");
+
+                entity.ToTable("Rol");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(100)
@@ -203,7 +219,9 @@ namespace Entities.Entities
             modelBuilder.Entity<StatusReserva>(entity =>
             {
                 entity.HasKey(e => e.IdStatusReserva)
-                    .HasName("PK__StatusRe__89FBDF1622DEB700");
+                    .HasName("PK__StatusRe__89FBDF160EDACB14");
+
+                entity.ToTable("StatusReserva");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(20)
@@ -213,13 +231,15 @@ namespace Entities.Entities
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuarios__5B65BF97B6884545");
+                    .HasName("PK__Usuario__5B65BF97B5BCAC4B");
+
+                entity.ToTable("Usuario");
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Contraseña)
+                entity.Property(e => e.Clave)
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
@@ -242,7 +262,7 @@ namespace Entities.Entities
                 entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdRol)
-                    .HasConstraintName("FK__Usuarios__IdRol__276EDEB3");
+                    .HasConstraintName("FK__Usuario__IdRol__3A81B327");
             });
 
             OnModelCreatingPartial(modelBuilder);
