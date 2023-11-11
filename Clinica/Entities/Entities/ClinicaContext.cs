@@ -29,6 +29,13 @@ namespace Entities.Entities
         public virtual DbSet<StatusReserva> StatusReservas { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
+        public virtual DbSet<SpObtenerInfoCitasResult> SpObtenerInfoCitasResults { get; set; } = null!;
+        public virtual DbSet<SpObtenerInfoDiagnosticosResult> SpObtenerInfoDiagnosticosResults { get; set; } = null!;
+        public virtual DbSet<SpObtenerInfoEspecialidadesResult> SpObtenerInfoEspecialidadesResult { get; set; } = null!;
+        public virtual DbSet<SpObtenerInfoReservasResult> SpObtenerInfoReservasResults { get; set; } = null!;
+        public virtual DbSet<SpObtenerInfoUsuariosConRolResult> SpObtenerInfoUsuariosConRolResults { get; set; } = null!;
+        public virtual DbSet<SpObtenerInfoFacturasConUsuario> SpObtenerInfoFacturasConUsuarios { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

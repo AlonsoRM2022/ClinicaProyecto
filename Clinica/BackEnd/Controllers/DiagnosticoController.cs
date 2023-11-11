@@ -28,6 +28,13 @@ namespace BackEnd.Controllers
             return Ok(diagnosticos);
         }
 
+        [HttpGet("info")]
+        public async Task<IActionResult> GetInfo()
+        {
+            IEnumerable<SpObtenerInfoDiagnosticosResult> diagnosticos = await _diagnosticoService.GetDiagnosticosInfo();
+            return Ok(diagnosticos);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

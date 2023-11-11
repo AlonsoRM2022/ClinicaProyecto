@@ -5,6 +5,7 @@ namespace DAL.Interfaces
 {
     public interface IUsuarioDAL : IDALGenerico<Usuario>
     {
+        Task<IEnumerable<SpObtenerInfoUsuariosConRolResult>> GetUsuariosInfo();
     }
 }
 

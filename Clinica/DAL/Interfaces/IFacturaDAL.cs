@@ -5,6 +5,7 @@ namespace DAL.Interfaces
 {
     public interface IFacturaDAL : IDALGenerico<Factura>
     {
+        Task<IEnumerable<SpObtenerInfoFacturasConUsuario>> GetFacturasInfo();
     }
 }
 

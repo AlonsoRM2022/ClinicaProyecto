@@ -41,6 +41,12 @@ namespace BackEnd.Services.Implementations
             return citas;
         }
 
+        public async Task<IEnumerable<SpObtenerInfoCitasResult>> GetCitasInfo()
+        {
+            IEnumerable<SpObtenerInfoCitasResult> citas = await _unidadDeTrabajo._citaDAL.GetCitasInfo();
+            return citas;
+        }
+
         public bool Update(Cita cita)
         {
             bool res = _unidadDeTrabajo._citaDAL.Update(cita);

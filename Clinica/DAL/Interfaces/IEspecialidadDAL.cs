@@ -5,6 +5,7 @@ namespace DAL.Interfaces
 {
     public interface IEspecialidadDAL : IDALGenerico<Especialidad>
     {
+        Task<IEnumerable<SpObtenerInfoEspecialidadesResult>> GetEspecialidadesInfo();
     }
 }
 

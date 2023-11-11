@@ -6,6 +6,7 @@ namespace BackEnd.Services.Interfaces
 	public interface IUsuarioService
 	{
         Task<IEnumerable<Usuario>> GetUsuariosAsync();
+        Task<IEnumerable<SpObtenerInfoUsuariosConRolResult>> GetUsuariosInfo();
         bool Add(Usuario usuario);
         bool Update(Usuario usuario);
         bool Delete(Usuario usuario);

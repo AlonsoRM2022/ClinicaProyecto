@@ -28,6 +28,13 @@ namespace BackEnd.Controllers
             return Ok(reservas);
         }
 
+        [HttpGet("info")]
+        public async Task<IActionResult> GetInfo()
+        {
+            IEnumerable<SpObtenerInfoReservasResult> reservas = await _reservaService.GetReservasInfo();
+            return Ok(reservas);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

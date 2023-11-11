@@ -28,6 +28,13 @@ namespace BackEnd.Controllers
             return Ok(facturas);
         }
 
+        [HttpGet("info")]
+        public async Task<IActionResult> GetInfo()
+        {
+            IEnumerable<SpObtenerInfoFacturasConUsuario> facturas = await _facturaService.GetFacturasInfo();
+            return Ok(facturas);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

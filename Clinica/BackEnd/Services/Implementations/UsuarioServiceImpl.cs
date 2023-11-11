@@ -41,6 +41,12 @@ namespace BackEnd.Services.Implementations
             return usuarios;
         }
 
+        public async Task<IEnumerable<SpObtenerInfoUsuariosConRolResult>> GetUsuariosInfo()
+        {
+            IEnumerable<SpObtenerInfoUsuariosConRolResult> usuarios = await _unidadDeTrabajo._usuarioDAL.GetUsuariosInfo();
+            return usuarios;
+        }
+
         public bool Update(Usuario usuario)
         {
             bool res = _unidadDeTrabajo._usuarioDAL.Update(usuario);

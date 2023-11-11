@@ -41,6 +41,12 @@ namespace BackEnd.Services.Implementations
             return facturas;
         }
 
+        public async Task<IEnumerable<SpObtenerInfoFacturasConUsuario>> GetFacturasInfo()
+        {
+            IEnumerable<SpObtenerInfoFacturasConUsuario> facturas = await _unidadDeTrabajo._facturaDAL.GetFacturasInfo();
+            return facturas;
+        }
+
         public bool Update(Factura factura)
         {
             bool res = _unidadDeTrabajo._facturaDAL.Update(factura);

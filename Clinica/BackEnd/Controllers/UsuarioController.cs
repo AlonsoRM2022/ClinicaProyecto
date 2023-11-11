@@ -28,6 +28,13 @@ namespace BackEnd.Controllers
             return Ok(usuarios);
         }
 
+        [HttpGet("info")]
+        public async Task<IActionResult> GetInfo()
+        {
+            IEnumerable<SpObtenerInfoUsuariosConRolResult> usuarios = await _usuarioService.GetUsuariosInfo();
+            return Ok(usuarios);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

@@ -41,6 +41,12 @@ namespace BackEnd.Services.Implementations
             return especialidades;
         }
 
+        public async Task<IEnumerable<SpObtenerInfoEspecialidadesResult>> GetEspecialidadesInfo()
+        {
+            IEnumerable<SpObtenerInfoEspecialidadesResult> especialidades = await _unidadDeTrabajo._especialidadDAL.GetEspecialidadesInfo();
+            return especialidades;
+        }
+
         public bool Update(Especialidad especialidad)
         {
             bool res = _unidadDeTrabajo._especialidadDAL.Update(especialidad);

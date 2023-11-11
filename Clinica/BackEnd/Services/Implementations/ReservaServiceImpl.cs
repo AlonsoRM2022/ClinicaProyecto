@@ -41,6 +41,12 @@ namespace BackEnd.Services.Implementations
             return reservas;
         }
 
+        public async Task<IEnumerable<SpObtenerInfoReservasResult>> GetReservasInfo()
+        {
+            IEnumerable<SpObtenerInfoReservasResult> citas = await _unidadDeTrabajo._reservaDAL.GetReservasInfo();
+            return citas;
+        }
+
         public bool Update(Reserva reserva)
         {
             bool res = _unidadDeTrabajo._reservaDAL.Update(reserva);

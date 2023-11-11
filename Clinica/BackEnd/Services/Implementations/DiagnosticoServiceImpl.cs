@@ -41,6 +41,12 @@ namespace BackEnd.Services.Implementations
             return diagnosticos;
         }
 
+        public async Task<IEnumerable<SpObtenerInfoDiagnosticosResult>> GetDiagnosticosInfo()
+        {
+            IEnumerable<SpObtenerInfoDiagnosticosResult> diagnosticos = await _unidadDeTrabajo._diagnosticoDAL.GetDiagnosticosInfo();
+            return diagnosticos;
+        }
+
         public bool Update(Diagnostico diagnostico)
         {
             bool res = _unidadDeTrabajo._diagnosticoDAL.Update(diagnostico);
