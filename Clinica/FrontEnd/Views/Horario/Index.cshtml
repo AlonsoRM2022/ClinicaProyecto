@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.StatusHorario)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.IdHorario }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.IdHorario })
+                  <button>  @Html.ActionLink("Edit", "Edit", new { id=item.IdHorario }) </button>
+                  <button>  @Html.ActionLink("Details", "Details", new { id=item.IdHorario }) </button>
             </td>
         </tr>
 }

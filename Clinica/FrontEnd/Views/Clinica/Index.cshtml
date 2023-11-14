@@ -49,8 +49,8 @@
                 @Html.DisplayFor(modelItem => item.Correo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.IdClinica }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.IdClinica })
+                    <button> @Html.ActionLink("Edit", "Edit", new { id=item.IdClinica }) </button>
+                    <button> @Html.ActionLink("Details", "Details", new { id=item.IdClinica }) </button>
             </td>
         </tr>
 }

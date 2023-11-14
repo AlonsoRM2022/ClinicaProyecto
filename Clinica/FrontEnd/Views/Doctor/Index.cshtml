@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.StatusDoctor)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.IdDoctor }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.IdDoctor })
+                  <button>  @Html.ActionLink("Edit", "Edit", new { id=item.IdDoctor }) </button>
+                  <button>   @Html.ActionLink("Details", "Details", new { id=item.IdDoctor }) </button>
             </td>
         </tr>
 }
