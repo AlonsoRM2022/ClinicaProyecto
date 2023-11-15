@@ -59,6 +59,12 @@ namespace BackEnd.Services.Implementations
             _unidadDeTrabajo.Complete();
             return res;
         }
+
+        public async Task<SpIniciarSesionResult> GetUsuarioInfo(string Correo, string Clave)
+        {
+            SpIniciarSesionResult usuario = await _unidadDeTrabajo._usuarioDAL.GetUsuarioInfo(Correo, Clave);
+            return usuario;
+        }
     }
 
 }

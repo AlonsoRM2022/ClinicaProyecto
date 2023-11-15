@@ -11,7 +11,11 @@ namespace BackEnd.Services.Interfaces
         bool Update(Usuario usuario);
         bool Delete(Usuario usuario);
         Usuario GetById(int id);
+<<<<<<< Updated upstream
         Task<Usuario> GetUsuario(string Correo, string Clave);
+=======
+
+        Task<SpIniciarSesionResult> GetUsuarioInfo(string Correo, string Clave);
+>>>>>>> Stashed changes
     }
 }
-
