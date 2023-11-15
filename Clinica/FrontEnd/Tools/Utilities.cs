@@ -1,13 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-<<<<<<< Updated upstream
 
 namespace ProyectoClinica.Tools
-=======
-using Microsoft.EntityFrameworkCore.Query.Internal;
-
-namespace FrontEnd.Tools
->>>>>>> Stashed changes
 {
     public class Utilities
     {
@@ -29,7 +23,3 @@ namespace FrontEnd.Tools
         }
     }
 }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes

@@ -11,27 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< Updated upstream
     <None Remove="Tools\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
-=======
-    <ProjectReference Include="..\BackEnd\BackEnd.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Tools\" />
-    <None Remove="Views\Inicio\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\" />
-    <Folder Include="Views\Inicio\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Views\Inicio\IniciarSesion.cshtml" />
-    <Content Remove="Views\Inicio\Registro.cshtml" />
->>>>>>> Stashed changes
   </ItemGroup>
 </Project>

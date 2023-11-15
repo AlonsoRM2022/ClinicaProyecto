@@ -1,7 +1,6 @@
 ﻿using System;
 using DAL.Interfaces;
 using Entities.Entities;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Implementations
@@ -52,43 +51,6 @@ namespace DAL.Implementations
                     );
             }
             return usuarios;
-        }
-
-
-        public async Task<SpIniciarSesionResult> GetUsuarioInfo(string Correo, string Clave)
-        {
-            string sql = "exec [dbo].[SpIniciarSesion] @Correo, @Clave";
-            var param = new SqlParameter[]
-            {
-                new SqlParameter()
-                {
-                    ParameterName = "@Correo",
-                    SqlDbType = System.Data.SqlDbType.VarChar,
-                    Direction = System.Data.ParameterDirection.Input,
-                    Value = Correo
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@Clave",
-                    SqlDbType = System.Data.SqlDbType.VarChar,
-                    Direction = System.Data.ParameterDirection.Input,
-                    Value = Clave
-                }
-            };
-            var item = await _context.SpIniciarSesionResults.FromSqlRaw(sql, param).FirstOrDefaultAsync();
-            return new SpIniciarSesionResult
-            {
-                IdUsuario = item.IdUsuario,
-                Nombre = item.Nombre,
-                Apellido = item.Apellido,
-                Correo = item.Correo,
-                Edad = item.Edad,
-                Direccion = item.Direccion,
-                Clave = item.Clave,
-                StatusUsuario = item.StatusUsuario,
-                FechaRegistro = item.FechaRegistro,
-                IdRol = item.IdRol,
-            };
         }
     }
 }
