@@ -7,12 +7,12 @@ namespace Entities.Entities
     {
         public Precio()
         {
-            Especialidades = new HashSet<Especialidade>();
+            Especialidads = new HashSet<Especialidad>();
         }
 
         public int IdPrecio { get; set; }
         public int? Valor { get; set; }
 
-        public virtual ICollection<Especialidade> Especialidades { get; set; }
+        public virtual ICollection<Especialidad> Especialidads { get; set; }
     }
 }

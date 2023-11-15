@@ -16,7 +16,7 @@ namespace Entities.Entities
         public string? Correo { get; set; }
         public int? Edad { get; set; }
         public string? Direccion { get; set; }
-        public string? Contraseña { get; set; }
+        public string? Clave { get; set; }
         public bool? StatusUsuario { get; set; }
         public DateTime? FechaRegistro { get; set; }
         public int? IdRol { get; set; }

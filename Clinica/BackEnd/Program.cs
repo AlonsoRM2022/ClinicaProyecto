@@ -1,3 +1,9 @@
+using BackEnd.Services.Implementations;
+using BackEnd.Services.Interfaces;
+using DAL.Implementations;
+using DAL.Interfaces;
+using Entities.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +12,35 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#region Depencendy Inyection
+builder.Services.AddDbContext<ClinicaContext>();
+builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
+builder.Services.AddScoped<ICitaDAL, CitaDALImpl>();
+builder.Services.AddScoped<IClinicaDAL, ClinicaDALImpl>();
+builder.Services.AddScoped<IDiagnosticoDAL, DiagnosticoDALImpl>();
+builder.Services.AddScoped<IDoctorDAL, DoctorDALImpl>();
+builder.Services.AddScoped<IEspecialidadDAL, EspecialidadDALImpl>();
+builder.Services.AddScoped<IFacturaDAL, FacturaDALImpl>();
+builder.Services.AddScoped<IHorarioDAL, HorarioDALImpl>();
+builder.Services.AddScoped<IPrecioDAL, PrecioDALImpl>();
+builder.Services.AddScoped<IReservaDAL, ReservaDALImpl>();
+builder.Services.AddScoped<IRoleDAL, RoleDALImpl>();
+builder.Services.AddScoped<IStatusReservaDAL, StatusReservaDALImpl>();
+builder.Services.AddScoped<IUsuarioDAL, UsuarioDALImpl>();
+builder.Services.AddScoped<ICitaService, CitaServiceImpl>();
+builder.Services.AddScoped<IClinicaService, ClinicaServiceImpl>();
+builder.Services.AddScoped<IDiagnosticoService, DiagnosticoServiceImpl>();
+builder.Services.AddScoped<IDoctorService, DoctorServiceImpl>();
+builder.Services.AddScoped<IEspecialidadService, EspecialidadServiceImpl>();
+builder.Services.AddScoped<IFacturaService, FacturaServiceImpl>();
+builder.Services.AddScoped<IHorarioService, HorarioServiceImpl>();
+builder.Services.AddScoped<IPrecioService, PrecioServiceImpl>();
+builder.Services.AddScoped<IReservaService, ReservaServiceImpl>();
+builder.Services.AddScoped<IRoleService, RoleServiceImpl>();
+builder.Services.AddScoped<IStatusReservaService, StatusReservaServiceImpl>();
+builder.Services.AddScoped<IUsuarioService, UsuarioServiceImpl>();
+#endregion
 
 var app = builder.Build();
 

@@ -18,8 +18,8 @@ namespace Entities.Entities
         public bool? StatusCita { get; set; }
 
         public virtual Clinica? IdClinicaNavigation { get; set; }
-        public virtual Doctore? IdDoctorNavigation { get; set; }
-        public virtual Especialidade? IdEspecialidadNavigation { get; set; }
+        public virtual Doctor? IdDoctorNavigation { get; set; }
+        public virtual Especialidad? IdEspecialidadNavigation { get; set; }
         public virtual Horario? IdHorarioNavigation { get; set; }
         public virtual ICollection<Reserva> Reservas { get; set; }
     }

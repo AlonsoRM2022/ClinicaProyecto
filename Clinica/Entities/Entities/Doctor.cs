@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Entities.Entities
 {
-    public partial class Doctore
+    public partial class Doctor
     {
-        public Doctore()
+        public Doctor()
         {
             Cita = new HashSet<Cita>();
         }
