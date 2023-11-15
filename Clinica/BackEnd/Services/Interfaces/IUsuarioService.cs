@@ -11,7 +11,7 @@ namespace BackEnd.Services.Interfaces
         bool Update(Usuario usuario);
         bool Delete(Usuario usuario);
         Usuario GetById(int id);
-
+        Task<Usuario> GetUsuario(string Correo, string Clave);
     }
 }
 

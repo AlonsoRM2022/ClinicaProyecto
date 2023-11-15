@@ -14,6 +14,14 @@ namespace DAL.Implementations
             _context = context;
         }
 
+        public async Task<Usuario> GetUsuario(string Correo, string Clave)
+        {
+            Usuario usuario = await _context.Usuarios.Where(u => u.Correo == Correo && u.Clave == Clave)
+                .FirstOrDefaultAsync();
+
+            return usuario;
+        }
+
         public async Task<IEnumerable<SpObtenerInfoUsuariosConRolResult>> GetUsuariosInfo()
         {
             List<SpObtenerInfoUsuariosConRolResult> usuarios = new List<SpObtenerInfoUsuariosConRolResult>();

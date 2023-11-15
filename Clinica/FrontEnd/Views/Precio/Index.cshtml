@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FrontEnd.Models.PrecioViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Precios</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPrecio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPrecio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                  <button>  @Html.ActionLink("Edit", "Edit", new { id=item.IdPrecio }) </button>
+                  <button>  @Html.ActionLink("Details", "Details", new { id=item.IdPrecio }) </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,68 @@
+﻿@model FrontEnd.Models.EspecialidadViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nueva Especialidad</h1>
+<div class="templatemo-content-wrapper">
+    <div class="templatemo-content2">
+        <br />
+        <div class="templatemo-panels">
+            <form asp-action="Create">
+                <div class="row">
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-4">
+
+
+                            <label asp-for="Nombre" class="control-label"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+
+
+                            <label asp-for="IdPrecio" class="control-label"></label>
+                            <br />
+                            @Html.DropDownListFor(model=>model.IdPrecio, new SelectList(Model.Precios,"IdPrecio","Valor"),"--Seleccione un precio--")
+                            <span asp-validation-for="IdPrecio" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+
+
+                            <label asp-for="StatusEspecialidad" class="control-label"></label>
+                            <br />
+                            <select name="StatusEspecialidad" id="StatusEspecialidad" required>
+                                <option selected="true" disabled="disabled">Seleccione una opción</option>
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                            <span asp-validation-for="StatusEspecialidad" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

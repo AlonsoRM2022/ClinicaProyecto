@@ -1,0 +1,39 @@
+﻿@model FrontEnd.Models.PrecioViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar Precio</h1>
+
+<div class="templatemo-content-wrapper">
+    <div class="templatemo-content2">
+        <br />
+        <div class="templatemo-panels">
+            <form asp-action="Edit">
+                <div class="row">
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.HiddenFor(Model=>Model.IdPrecio)
+                            <div class="form-group">
+                                <label asp-for="Valor" class="control-label"></label>
+                                <input asp-for="Valor" class="form-control" />
+                                <span asp-validation-for="Valor" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <div>
+                    <a asp-action="Index">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

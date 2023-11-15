@@ -35,6 +35,12 @@ namespace BackEnd.Services.Implementations
             return usuario;
         }
 
+        public async Task<Usuario> GetUsuario(string Correo, string Clave)
+        {
+            Usuario usuario = await _unidadDeTrabajo._usuarioDAL.GetUsuario(Correo, Clave);
+            return usuario;
+        }
+
         public async Task<IEnumerable<Usuario>> GetUsuariosAsync()
         {
             IEnumerable<Usuario> usuarios = await _unidadDeTrabajo._usuarioDAL.GetAll();

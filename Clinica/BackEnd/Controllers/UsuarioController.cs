@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BackEnd.Services.Interfaces;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -49,12 +53,25 @@ namespace BackEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Usuario usuario)
         {
-            bool result = _usuarioService.Add(usuario);
-            if (result)
+            if (string.IsNullOrEmpty(usuario.Nombre))
             {
-                return Ok(usuario);
+                Usuario usuario2 = await _usuarioService.GetUsuario(usuario.Correo, usuario.Clave);
+                Console.WriteLine("Usuario logueado: " + usuario2);
+                if (usuario2 != null)
+                {
+                    return Ok(usuario2);
+                }
+                 return BadRequest("El usuario no existe o las credenciales son inválidas");
             }
-            return BadRequest("Error al agregar el usuario.");
+            else
+            {
+                bool result = _usuarioService.Add(usuario);
+                if (result)
+                {
+                    return Ok(usuario);
+                }
+                return BadRequest("Error al agregar el usuario.");
+            }
         }
 
         [HttpPut]

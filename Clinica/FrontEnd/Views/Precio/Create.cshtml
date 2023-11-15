@@ -1,0 +1,41 @@
+﻿@model FrontEnd.Models.PrecioViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nuevo Precio</h1>
+<div class="templatemo-content-wrapper">
+    <div class="templatemo-content2">
+        <br />
+        <div class="templatemo-panels">
+            <form asp-action="Create">
+                <div class="row">
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            
+                                
+                                    <label asp-for="Valor" class="control-label"></label>
+                                    <input asp-for="Valor" class="form-control" />
+                                    <span asp-validation-for="Valor" class="text-danger"></span>
+                                
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-12 text-right">
+                            <input type="submit" value="Guardar" class="btn btn-warning" id="btnGuardar" name="btnGuardar">
+                            <a href="Index" class="btn btn-info">Regresar</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
