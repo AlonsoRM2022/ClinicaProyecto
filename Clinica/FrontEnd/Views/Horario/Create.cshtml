@@ -12,14 +12,18 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-                <label asp-for="IdHorario" class="control-label"></label>
-                <input asp-for="IdHorario" class="form-control" />
-                <span asp-validation-for="IdHorario" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
                 <label asp-for="Dia" class="control-label"></label>
-                <input asp-for="Dia" class="form-control" />
+                <select asp-for="Dia" class="form-control" onchange="disableDefaultOption(this)">
+                    <option value="" disabled selected>Seleccione un día</option>
+                    @{
+                        var diasSemana = new string[] { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
+                        for (int i = 0; i < diasSemana.Length; i++)
+                        {
+                            <option value="@diasSemana[i]">@diasSemana[i]</option>
+                        }
+                    }
+                </select>
                 <span asp-validation-for="Dia" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,11 +40,6 @@
                 </select>
                 <span asp-validation-for="StatusHorario" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-                <label asp-for="StatusHorario" class="control-label"></label>
-                <input asp-for="StatusHorario" class="form-control" />
-                <span asp-validation-for="StatusHorario" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -51,6 +50,13 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>
+    function disableDefaultOption(selectElement) {
+        var defaultOption = selectElement.options[0];
+        defaultOption.disabled = true;
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

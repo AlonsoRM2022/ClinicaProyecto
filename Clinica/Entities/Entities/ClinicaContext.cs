@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities.Utilities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entities.Entities
 {
-    public partial class ClinicaContext : DbContext
+    public partial class ClinicaContext : IdentityDbContext<ApplicationUser>
     {
         public ClinicaContext()
         {
+            var optionBuilder = new DbContextOptionsBuilder<ClinicaContext>();
+            optionBuilder.UseSqlServer(Util.ConnectionString);
         }
 
         public ClinicaContext(DbContextOptions<ClinicaContext> options)
@@ -38,15 +42,13 @@ namespace Entities.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=Clinica;Persist Security Info=False;User ID=sa;Password=Admin1234+*;TrustServerCertificate=false;");
-            }
+            optionsBuilder.UseSqlServer(Util.ConnectionString);
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Cita>(entity =>
             {
                 entity.HasKey(e => e.IdCita)

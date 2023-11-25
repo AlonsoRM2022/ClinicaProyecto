@@ -3,8 +3,27 @@ using BackEnd.Services.Interfaces;
 using DAL.Implementations;
 using DAL.Interfaces;
 using Entities.Entities;
+using Entities.Utilities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region ConnString
+
+string connString = builder
+                            .Configuration
+                            .GetConnectionString("DefaultConnection");
+
+
+builder.Services.AddDbContext<ClinicaContext>(options =>
+                        options.UseSqlServer(
+                           connString
+                            ));
+
+Util.ConnectionString = connString;
+
+#endregion
 
 // Add services to the container.
 
@@ -12,6 +31,28 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#region Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+
+{
+    options.Password.RequiredLength = 5;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+
+}
+
+
+
+    )
+    .AddEntityFrameworkStores<ClinicaContext>()
+    .AddDefaultTokenProviders();
+
+
+
+#endregion
 
 #region Depencendy Inyection
 builder.Services.AddDbContext<ClinicaContext>();
