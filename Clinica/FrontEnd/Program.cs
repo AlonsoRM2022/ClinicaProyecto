@@ -7,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(x => x.LoginPath = "/account/login");
+
+builder.Services.AddSession();
+
 builder.Services.AddHttpClient<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IPrecioHelper, PrecioHelper>();
@@ -16,15 +21,9 @@ builder.Services.AddScoped<IHorarioHelper, HorarioHelper>();
 builder.Services.AddScoped<IEspecialidadHelper, EspecialidadHelper>();
 builder.Services.AddScoped<ICitaHelper, CitaHelper>();
 builder.Services.AddScoped<IUsuarioHelper, UsuarioHelper>();
-
 builder.Services.AddHttpClient<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-{
-    options.LoginPath = "/Home/IniciarSesion";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-});
+builder.Services.AddScoped<ISecurityHelper, SecurityHelper>();
 
 var app = builder.Build();
 
@@ -36,11 +35,13 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=IniciarSesion}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
