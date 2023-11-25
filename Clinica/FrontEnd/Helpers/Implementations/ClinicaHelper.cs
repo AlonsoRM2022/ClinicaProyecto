@@ -1,4 +1,5 @@
-﻿using FrontEnd.Helpers.Interfaces;
+﻿using System.Net.Http.Headers;
+using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
 using Newtonsoft.Json;
 
@@ -13,8 +14,17 @@ namespace FrontEnd.Helpers.Implementations
             _repository = serviceRepository;
         }
 
+        public string Token { get; set; }
+
+        private void SetAuthorizationHeader()
+        {
+            _repository.Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Token);
+        }
+
         public ClinicaViewModel AddClinica(ClinicaViewModel clinicaViewModel)
         {
+            SetAuthorizationHeader();
             ClinicaViewModel clinica = new ClinicaViewModel();
             HttpResponseMessage responseMessage = _repository.PostResponse("api/Clinica", clinicaViewModel);
             if (responseMessage != null)
@@ -27,6 +37,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public void DeleteClinica(int id)
         {
+            SetAuthorizationHeader();
             HttpResponseMessage responseMessage = _repository.DeleteResponse("api/Clinica/" + id.ToString());
             if (responseMessage != null)
             {
@@ -36,6 +47,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public ClinicaViewModel EditClinica(ClinicaViewModel clinicaViewModel)
         {
+            SetAuthorizationHeader();
             ClinicaViewModel clinica = new ClinicaViewModel();
             HttpResponseMessage responseMessage = _repository.PutResponse("api/Clinica", clinicaViewModel);
             if (responseMessage != null)
@@ -48,6 +60,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public List<ClinicaViewModel> GetAll()
         {
+            SetAuthorizationHeader();
             List<ClinicaViewModel> lista = new List<ClinicaViewModel>();
             HttpResponseMessage responseMessage = _repository.GetResponse("api/Clinica");
             if (responseMessage != null)
@@ -61,6 +74,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public ClinicaViewModel GetById(int id)
         {
+            SetAuthorizationHeader();
             ClinicaViewModel clinica = new ClinicaViewModel();
             HttpResponseMessage responseMessage = _repository.GetResponse("api/Clinica/" + id.ToString());
             if (responseMessage != null)

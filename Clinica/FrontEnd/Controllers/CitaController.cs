@@ -1,11 +1,13 @@
 ﻿using FrontEnd.Helpers.Implementations;
 using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize]
     public class CitaController : Controller
     {
 
@@ -14,6 +16,17 @@ namespace FrontEnd.Controllers
         IEspecialidadHelper especialidadHelper;
         IClinicaHelper clinicaHelper;
         IHorarioHelper horarioHelper;
+
+        public string Token { get; set; }
+        private void SetToken()
+        {
+            Token = HttpContext.Session.GetString("token");
+            citaHelper.Token = Token;
+            doctorHelper.Token = Token;
+            especialidadHelper.Token = Token;
+            clinicaHelper.Token = Token;
+            horarioHelper.Token = Token;
+        }
 
         public CitaController(ICitaHelper CitaHelper,
                               IDoctorHelper DoctorHelper,
@@ -33,6 +46,7 @@ namespace FrontEnd.Controllers
         // GET: CitaController
         public ActionResult Index()
         {
+            SetToken();
             List<CitaViewModel> citas = citaHelper.GetAll();
             return View(citas);
         }
@@ -40,6 +54,7 @@ namespace FrontEnd.Controllers
         // GET: CitaController/Details/5
         public ActionResult Details(int id)
         {
+            SetToken();
             CitaViewModel cita = citaHelper.GetById(id);
             return View(cita);
         }
@@ -47,6 +62,7 @@ namespace FrontEnd.Controllers
         // GET: EspecialidadController/Create
         public ActionResult Create()
         {
+            SetToken();
             CitaViewModel cita = new CitaViewModel();
             cita.Doctores = doctorHelper.GetAll();
             cita.Especialidades = especialidadHelper.GetAll();
@@ -62,6 +78,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 citaHelper.AddCita(cita);
                 return RedirectToAction(nameof(Index));
             }
@@ -74,6 +91,7 @@ namespace FrontEnd.Controllers
         // GET: CitaController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetToken();
             CitaViewModel cita = citaHelper.GetById(id);
             cita.Doctores = doctorHelper.GetAll();
             cita.Especialidades = especialidadHelper.GetAll();
@@ -89,6 +107,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 citaHelper.EditCita(cita);
                 return RedirectToAction(nameof(Index));
             }
@@ -101,6 +120,7 @@ namespace FrontEnd.Controllers
         // GET: CitaController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetToken();
             CitaViewModel cita = citaHelper.GetById(id);
             return View(cita);
         }
@@ -112,6 +132,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 citaHelper.DeleteCita(cita.IdCita);
                 return RedirectToAction(nameof(Index));
             }

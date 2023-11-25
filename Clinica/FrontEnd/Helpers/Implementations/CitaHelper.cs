@@ -1,6 +1,8 @@
-﻿using FrontEnd.Helpers.Interfaces;
+﻿using System.Net.Http.Headers;
+using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FrontEnd.Helpers.Implementations
 {
@@ -9,13 +11,23 @@ namespace FrontEnd.Helpers.Implementations
 
         IServiceRepository _repository;
 
+
         public CitaHelper(IServiceRepository serviceRepository)
         {
             _repository = serviceRepository;
         }
 
+        public string Token { get; set; }
+
+        private void SetAuthorizationHeader()
+        {
+            _repository.Client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Token);
+        }
+        
         public CitaViewModel AddCita(CitaViewModel CitaViewModel)
         {
+            SetAuthorizationHeader();
             CitaViewModel cita = new CitaViewModel();
             HttpResponseMessage responseMessage = _repository.PostResponse("api/cita", CitaViewModel);
             if (responseMessage != null)
@@ -28,6 +40,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public void DeleteCita(int id)
         {
+            SetAuthorizationHeader();
             HttpResponseMessage responseMessage = _repository.DeleteResponse("api/cita/" + id.ToString());
             if (responseMessage != null)
             {
@@ -37,6 +50,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public CitaViewModel EditCita(CitaViewModel CitaViewModel)
         {
+            SetAuthorizationHeader();
             CitaViewModel cita = new CitaViewModel();
             HttpResponseMessage responseMessage = _repository.PutResponse("api/cita", CitaViewModel);
             if (responseMessage != null)
@@ -49,6 +63,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public List<CitaViewModel> GetAll()
         {
+            SetAuthorizationHeader();
             List<CitaViewModel> lista = new List<CitaViewModel>();
             HttpResponseMessage responseMessage = _repository.GetResponse("api/Cita");
             if (responseMessage != null)
@@ -61,6 +76,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public CitaViewModel GetById(int id)
         {
+            SetAuthorizationHeader();
             CitaViewModel Cita = new CitaViewModel();
             HttpResponseMessage responseMessage = _repository.GetResponse("api/Cita/" + id.ToString());
             if (responseMessage != null)

@@ -4,6 +4,7 @@ namespace FrontEnd.Helpers.Interfaces
 {
     public interface IPrecioHelper
     {
+        string Token { get; set; }
         List<PrecioViewModel> GetAll();
         PrecioViewModel GetById(int id);
         PrecioViewModel AddPrecio(PrecioViewModel precioViewModel);

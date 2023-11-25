@@ -13,6 +13,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddSession();
 
 builder.Services.AddHttpClient<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<ISecurityHelper, SecurityHelper>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IPrecioHelper, PrecioHelper>();
 builder.Services.AddScoped<IClinicaHelper, ClinicaHelper>();
@@ -21,9 +22,6 @@ builder.Services.AddScoped<IHorarioHelper, HorarioHelper>();
 builder.Services.AddScoped<IEspecialidadHelper, EspecialidadHelper>();
 builder.Services.AddScoped<ICitaHelper, CitaHelper>();
 builder.Services.AddScoped<IUsuarioHelper, UsuarioHelper>();
-builder.Services.AddHttpClient<IServiceRepository, ServiceRepository>();
-builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-builder.Services.AddScoped<ISecurityHelper, SecurityHelper>();
 
 var app = builder.Build();
 
@@ -42,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

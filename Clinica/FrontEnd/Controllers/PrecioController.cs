@@ -1,15 +1,25 @@
 ﻿using FrontEnd.Helpers.Implementations;
 using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize]
     public class PrecioController : Controller
     {
 
         IPrecioHelper precioHelper;
+
+        public string Token { get; set; }
+        private void SetToken()
+        {
+            Token = HttpContext.Session.GetString("token");
+            precioHelper.Token = Token;
+        }
 
         public PrecioController(IPrecioHelper _precioHelper)
         {
@@ -19,6 +29,7 @@ namespace FrontEnd.Controllers
         // GET: PrecioController
         public ActionResult Index()
         {
+            SetToken();
             //PrecioHelper precioHelper = new PrecioHelper();
             List<PrecioViewModel> precios = precioHelper.GetAll();
             return View(precios);
@@ -27,6 +38,7 @@ namespace FrontEnd.Controllers
         // GET: PrecioController/Details/5
         public ActionResult Details(int id)
         {
+            SetToken();
             PrecioViewModel precio = precioHelper.GetById(id);
             return View(precio);
         }
@@ -44,6 +56,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 precioHelper.AddPrecio(precio);
                 return RedirectToAction(nameof(Index));
             }
@@ -56,6 +69,7 @@ namespace FrontEnd.Controllers
         // GET: PrecioController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetToken();
             PrecioViewModel precio = precioHelper.GetById(id);
             return View(precio);
         }
@@ -67,6 +81,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 PrecioViewModel precioViewModel = precioHelper.EditPrecio(precio);
                 return RedirectToAction(nameof(Index));
             }
@@ -79,6 +94,7 @@ namespace FrontEnd.Controllers
         // GET: PrecioController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetToken();
             PrecioViewModel precio = precioHelper.GetById(id);
             return View(precio);
         }
@@ -90,6 +106,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 precioHelper.DeletePrecio(precio.IdPrecio);
                 return RedirectToAction(nameof(Index));
             }

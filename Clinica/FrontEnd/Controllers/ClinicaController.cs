@@ -1,15 +1,25 @@
 ﻿using FrontEnd.Helpers.Implementations;
 using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize]
     public class ClinicaController : Controller
     {
 
         IClinicaHelper clinicaHelper;
+
+        public string Token { get; set; }
+        private void SetToken()
+        {
+            Token = HttpContext.Session.GetString("token");
+            clinicaHelper.Token = Token;
+        }
 
         public ClinicaController(IClinicaHelper _clinicaHelper)
         {
@@ -19,6 +29,7 @@ namespace FrontEnd.Controllers
         // GET: ClinicaController
         public ActionResult Index()
         {
+            SetToken();
             //PrecioHelper precioHelper = new PrecioHelper();
             List<ClinicaViewModel> clinicas = clinicaHelper.GetAll();
             return View(clinicas);
@@ -27,6 +38,7 @@ namespace FrontEnd.Controllers
         // GET: ClinicaController/Details/5
         public ActionResult Details(int id)
         {
+            SetToken();
             ClinicaViewModel clinica = clinicaHelper.GetById(id);
             return View(clinica);
         }
@@ -44,6 +56,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 clinicaHelper.AddClinica(clinica);
                 return RedirectToAction(nameof(Index));
             }
@@ -56,6 +69,7 @@ namespace FrontEnd.Controllers
         // GET: ClinicaController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetToken();
             ClinicaViewModel clinica = clinicaHelper.GetById(id);
             return View(clinica);
         }
@@ -67,6 +81,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 ClinicaViewModel clinicaViewModel = clinicaHelper.EditClinica(clinica);
                 return RedirectToAction(nameof(Index));
             }
@@ -79,6 +94,7 @@ namespace FrontEnd.Controllers
         // GET: ClinicaController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetToken();
             ClinicaViewModel clinica = clinicaHelper.GetById(id);
             return View(clinica);
         }
@@ -90,6 +106,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 clinicaHelper.DeleteClinica(clinica.IdClinica);
                 return RedirectToAction(nameof(Index));
             }

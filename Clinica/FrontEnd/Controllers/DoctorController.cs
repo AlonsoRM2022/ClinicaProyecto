@@ -1,15 +1,25 @@
 ﻿using FrontEnd.Helpers.Implementations;
 using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize]
     public class DoctorController : Controller
     {
 
         IDoctorHelper doctorHelper;
+
+        public string Token { get; set; }
+        private void SetToken()
+        {
+            Token = HttpContext.Session.GetString("token");
+            doctorHelper.Token = Token;
+        }
 
         public DoctorController(IDoctorHelper _doctorHelper)
         {
@@ -19,6 +29,7 @@ namespace FrontEnd.Controllers
         // GET: DoctorController
         public ActionResult Index()
         {
+            SetToken();
             //PrecioHelper precioHelper = new PrecioHelper();
             List<DoctorViewModel> doctores = doctorHelper.GetAll();
             return View(doctores);
@@ -27,6 +38,7 @@ namespace FrontEnd.Controllers
         // GET: DoctorController/Details/5
         public ActionResult Details(int id)
         {
+            SetToken();
             DoctorViewModel doctor = doctorHelper.GetById(id);
             return View(doctor);
         }
@@ -44,6 +56,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 doctorHelper.AddDoctor(doctor);
                 return RedirectToAction(nameof(Index));
             }
@@ -56,6 +69,7 @@ namespace FrontEnd.Controllers
         // GET: DoctorController/Edit/5
         public ActionResult Edit(int id)
         {
+            SetToken();
             DoctorViewModel doctor = doctorHelper.GetById(id);
             return View(doctor);
         }
@@ -67,6 +81,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 DoctorViewModel doctorViewModel = doctorHelper.EditDoctor(doctor);
                 return RedirectToAction(nameof(Index));
             }
@@ -79,6 +94,7 @@ namespace FrontEnd.Controllers
         // GET: DoctorController/Delete/5
         public ActionResult Delete(int id)
         {
+            SetToken();
             DoctorViewModel doctor = doctorHelper.GetById(id);
             return View(doctor);
         }
@@ -90,6 +106,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                SetToken();
                 doctorHelper.DeleteDoctor(doctor.IdDoctor);
                 return RedirectToAction(nameof(Index));
             }
