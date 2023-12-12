@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FrontEnd.Models.DiagnosticoInfoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Diagnósticos</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDiagnostico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recomendacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDoctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdDiagnostico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recomendacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDoctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    <button>@Html.ActionLink("Editar", "Edit", new { id = item.IdDiagnostico })</button>
+                    <button>@Html.ActionLink("Detalles", "Details", new { id = item.IdDiagnostico })</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

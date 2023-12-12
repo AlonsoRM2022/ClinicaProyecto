@@ -31,6 +31,7 @@ namespace DAL.Implementations
                     {
                         IdDiagnostico = item.IdDiagnostico,
                         Descripcion = item.Descripcion,
+                        Recomendacion = item.Recomendacion,
                         NombreDoctor = item.NombreDoctor,
                         NombreUsuario = item.NombreUsuario
                     }

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FrontEnd.Models.CitaInfoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Citas</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCita)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDoctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEspecialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreClinica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaHorario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraHorario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDoctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEspecialidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreClinica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaHorario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraHorario)
+                </td>
+                <td>
+                    <button>@Html.ActionLink("Editar", "Edit", new { id = item.IdCita })</button>
+                    <button>@Html.ActionLink("Detalles", "Details", new { id = item.IdCita })</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

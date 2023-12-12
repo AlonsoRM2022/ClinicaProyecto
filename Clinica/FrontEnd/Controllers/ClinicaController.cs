@@ -49,6 +49,12 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+        // GET: ClinicaController/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         // POST: ClinicaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

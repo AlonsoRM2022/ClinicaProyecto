@@ -108,6 +108,8 @@ namespace Entities.Entities
 
                 entity.Property(e => e.Descripcion).IsUnicode(false);
 
+                entity.Property(e => e.Recomendacion).IsUnicode(false);
+
                 entity.HasOne(d => d.IdReservaNavigation)
                     .WithMany(p => p.Diagnosticos)
                     .HasForeignKey(d => d.IdReserva)

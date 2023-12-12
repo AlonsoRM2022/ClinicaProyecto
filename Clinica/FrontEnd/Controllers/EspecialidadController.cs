@@ -40,6 +40,14 @@ namespace FrontEnd.Controllers
             return View(especialidades);
         }
 
+        // GET: EspecialidadController
+        public ActionResult Info()
+        {
+            SetToken();
+            List<EspecialidadInfoViewModel> especialidades = especialidadHelper.GetEspecialidadInfoAll();
+            return View(especialidades);
+        }
+
         // GET: EspecialidadController/Details/5
         public ActionResult Details(int id)
         {

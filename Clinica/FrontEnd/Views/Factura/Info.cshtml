@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FrontEnd.Models.FacturaInfoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Facturas</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    <button>@Html.ActionLink("Editar", "Edit", new { id = item.IdFactura })</button>
+                    <button>@Html.ActionLink("Detalles", "Details", new { id = item.IdFactura })</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

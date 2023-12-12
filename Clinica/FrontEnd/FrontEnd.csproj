@@ -10,4 +10,14 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Diagnostico\" />
+    <None Remove="Views\Factura\" />
+    <None Remove="Views\Reserva\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Diagnostico\" />
+    <Folder Include="Views\Factura\" />
+    <Folder Include="Views\Reserva\" />
+  </ItemGroup>
 </Project>

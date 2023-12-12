@@ -51,6 +51,14 @@ namespace FrontEnd.Controllers
             return View(citas);
         }
 
+        // GET: CitaController
+        public ActionResult Info()
+        {
+            SetToken();
+            List<CitaInfoViewModel> citas = citaHelper.GetCitaInfoAll();
+            return View(citas);
+        }
+
         // GET: CitaController/Details/5
         public ActionResult Details(int id)
         {

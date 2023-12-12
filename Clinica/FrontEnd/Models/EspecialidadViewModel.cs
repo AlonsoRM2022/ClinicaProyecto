@@ -7,7 +7,6 @@
         public int? IdPrecio { get; set; }
         public IEnumerable<PrecioViewModel> Precios { get; set; }
 
-
         public bool? StatusEspecialidad { get; set; }
         
     }

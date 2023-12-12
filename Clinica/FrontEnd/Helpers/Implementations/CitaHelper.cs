@@ -86,5 +86,18 @@ namespace FrontEnd.Helpers.Implementations
             }
             return Cita;
         }
+
+        public List<CitaInfoViewModel> GetCitaInfoAll()
+        {
+            SetAuthorizationHeader();
+            List<CitaInfoViewModel> lista = new List<CitaInfoViewModel>();
+            HttpResponseMessage responseMessage = _repository.GetResponse("api/Cita/Info");
+            if (responseMessage != null)
+            {
+                var content = responseMessage.Content.ReadAsStringAsync().Result;
+                lista = JsonConvert.DeserializeObject<List<CitaInfoViewModel>>(content);
+            }
+            return lista;
+        }
     }
 }

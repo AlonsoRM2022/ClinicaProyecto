@@ -22,6 +22,9 @@ builder.Services.AddScoped<IHorarioHelper, HorarioHelper>();
 builder.Services.AddScoped<IEspecialidadHelper, EspecialidadHelper>();
 builder.Services.AddScoped<ICitaHelper, CitaHelper>();
 builder.Services.AddScoped<IUsuarioHelper, UsuarioHelper>();
+builder.Services.AddScoped<IDiagnosticoHelper, DiagnosticoHelper>();
+builder.Services.AddScoped<IFacturaHelper, FacturaHelper>();
+builder.Services.AddScoped<IReservaHelper, ReservaHelper>();
 
 var app = builder.Build();
 

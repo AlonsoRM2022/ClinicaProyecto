@@ -3,6 +3,60 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenido</h1>
-    <img src="" alt=""/>
+    <h1 class="display-4">Panel Clínico</h1>
+    <img src="" alt="" />
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/images/banner1.jpg" class="card-img-top" alt="Imagen Cita">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Citas</h5>
+                    @Html.ActionLink("Ver Citas", "Info", "Cita", new { area = "" }, new { @class = "btn btn-theme" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/images/banner2.jpg" class="card-img-top" alt="Imagen Diagnóstico">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Diagnosticos</h5>
+                    @Html.ActionLink("Ver Diagnósticos", "Info", "Diagnostico", new { area = "" }, new { @class = "btn btn-theme" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/images/banner3.jpg" class="card-img-top" alt="Imagen Especialidad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Especialidades</h5>
+                    @Html.ActionLink("Ver Especialidades", "Info", "Especialidad", new { area = "" }, new { @class = "btn btn-theme" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="~/images/banner4.jpg" class="card-img-top" alt="Imagen Factura">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Facturas</h5>
+                    @Html.ActionLink("Ver Facturas", "Info", "Factura", new { area = "" }, new { @class = "btn btn-theme" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="~/images/banner5.jpg" class="card-img-top" alt="Imagen Reserva">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Reservas</h5>
+                    @Html.ActionLink("Ver Reservas", "Info", "Reserva", new { area = "" }, new { @class = "btn btn-theme" })
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

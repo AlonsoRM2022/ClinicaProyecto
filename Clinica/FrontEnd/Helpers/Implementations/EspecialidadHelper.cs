@@ -84,5 +84,18 @@ namespace FrontEnd.Helpers.Implementations
             }
             return Especialidad;
         }
+
+        public List<EspecialidadInfoViewModel> GetEspecialidadInfoAll()
+        {
+            SetAuthorizationHeader();
+            List<EspecialidadInfoViewModel> lista = new List<EspecialidadInfoViewModel>();
+            HttpResponseMessage responseMessage = _repository.GetResponse("api/Especialidad/Info");
+            if (responseMessage != null)
+            {
+                var content = responseMessage.Content.ReadAsStringAsync().Result;
+                lista = JsonConvert.DeserializeObject < List <EspecialidadInfoViewModel>>(content);
+            }
+            return lista;
+        }
     }
 }

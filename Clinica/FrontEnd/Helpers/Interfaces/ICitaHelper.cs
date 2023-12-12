@@ -6,6 +6,7 @@ namespace FrontEnd.Helpers.Interfaces
     {
         string Token { get; set; }
         List<CitaViewModel> GetAll();
+        List<CitaInfoViewModel> GetCitaInfoAll();
         CitaViewModel GetById(int id);
         CitaViewModel AddCita(CitaViewModel CitaViewModel);
         CitaViewModel EditCita(CitaViewModel CitaViewModel);

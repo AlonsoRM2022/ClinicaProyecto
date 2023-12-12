@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FrontEnd.Models.ReservaInfoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Reservas</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCita)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoReserva)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdReserva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaReserva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoReserva)
+                </td>
+                <td>
+                    <button>@Html.ActionLink("Editar", "Edit", new { id = item.IdReserva })</button>
+                    <button>@Html.ActionLink("Detalles", "Details", new { id = item.IdReserva })</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

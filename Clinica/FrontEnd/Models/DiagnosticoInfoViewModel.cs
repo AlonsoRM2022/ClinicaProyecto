@@ -1,10 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
-
-namespace Entities.Entities
+namespace FrontEnd.Models
 {
-    [Keyless]
-    public class SpObtenerInfoDiagnosticosResult
+	public class DiagnosticoInfoViewModel
 	{
         public int IdDiagnostico { get; set; }
         public string? Descripcion { get; set; }
